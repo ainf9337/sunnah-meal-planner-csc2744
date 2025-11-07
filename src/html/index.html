@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunnah Meal Planner</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../../index.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">Sunnah Meal Planner</h1>
+                <nav class="nav">
+                    <button class="nav-btn active" data-view="search">Search Recipes</button>
+                    <button class="nav-btn" data-view="plan">My Meal Plan</button>
+                    <button class="nav-btn" onclick="window.location.href='about.html'">About</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Search View -->
+            <div id="searchView" class="view active">
+                <div class="search-section">
+                    <div class="search-box">
+                        <input type="text" id="ingredientInput" placeholder="Enter Sunnah ingredients (dates, honey, olives, milk, barley...)">
+                        <button id="searchButton" class="search-btn">
+                            <span class="btn-text">Search Recipes</span>
+                            <div class="loading-spinner hidden"></div>
+                        </button>
+                    </div>
+                    <div class="suggestions">
+                        <span>Try:</span>
+                        <button class="suggestion-tag" data-ingredient="dates">Dates</button>
+                        <button class="suggestion-tag" data-ingredient="honey">Honey</button>
+                        <button class="suggestion-tag" data-ingredient="olives">Olives</button>
+                        <button class="suggestion-tag" data-ingredient="milk">Milk</button>
+                        <button class="suggestion-tag" data-ingredient="barley">Barley</button>
+                    </div>
+                </div>
+
+                <div id="loadingSpinner" class="loading-state hidden">
+                    <div class="spinner"></div>
+                    <p>Searching for recipes...</p>
+                </div>
+
+                <div id="recipeGrid" class="recipe-grid">
+                    <div class="welcome-message">
+                        <div class="welcome-icon">🍽️</div>
+                        <h3>Welcome to Sunnah Meal Planner!</h3>
+                        <p>Search for recipes using Sunnah ingredients like dates, honey, olives, milk, or barley to get started.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meal Plan View -->
+            <div id="planView" class="view">
+                <div class="plan-header">
+                    <h2>My Weekly Meal Plan</h2>
+                    <div>
+                        <button id="exportPlanBtn" class="btn btn-outline" style="margin-right: 0.5rem;">Export Plan</button>
+                        <button id="clearPlanBtn" class="clear-btn">Clear All</button>
+                    </div>
+                </div>
+                <div id="mealPlanContainer" class="meal-plan"></div>
+            </div>
+        </main>
+
+        <!-- Day Selection Modal -->
+        <div id="daySelectionModal" class="modal hidden">
+            <div class="modal-overlay" onclick="closeDaySelectionModal()"></div>
+            <div class="modal-content" style="max-width: 350px;">
+                <div class="modal-header">
+                    <h3>Add Meal to Plan</h3>
+                    <button class="close-btn" onclick="closeDaySelectionModal()">&times;</button>
+                </div>
+                
+                <div class="modal-body" style="text-align: center;">
+                    <p style="margin-bottom: 1.5rem; color: var(--text-color);">
+                        Select the day you want to add this meal to:
+                    </p>
+                    <div class="form-group">
+                        <select id="mealDaySelector" class="form-select">
+                            <option value="monday">Monday</option>
+                            <option value="tuesday">Tuesday</option>
+                            <option value="wednesday">Wednesday</option>
+                            <option value="thursday">Thursday</option>
+                            <option value="friday">Friday</option>
+                            <option value="saturday">Saturday</option>
+                            <option value="sunday">Sunday</option>
+                        </select>
+                    </div>
+                    <button id="confirmAddMealBtn" class="btn btn-primary" style="width: 100%;">
+                        Confirm Add Meal
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Meal Modal -->
+        <div id="editModal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Edit Meal Plan</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="editDay">Day of Week:</label>
+                        <select id="editDay" class="form-select">
+                            <option value="sunday">Sunday</option>
+                            <option value="monday">Monday</option>
+                            <option value="tuesday">Tuesday</option>
+                            <option value="wednesday">Wednesday</option>
+                            <option value="thursday">Thursday</option>
+                            <option value="friday">Friday</option>
+                            <option value="saturday">Saturday</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editNotes">Personal Notes:</label>
+                        <textarea id="editNotes" class="form-textarea" placeholder="Add cooking instructions, modifications, or reminders..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelEditButton" class="btn btn-secondary">Cancel</button>
+                    <button id="saveEditButton" class="btn btn-primary">Save Changes</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast hidden"></div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loading Sunnah Meal Planner...</title>
+  <style>
+    /* --- Color Palette (matches index.css) --- */
+    :root {
+      --deep-green: #043f34;
+      --medium-sage: #71967d;
+      --pale-mint: #afcab8;
+      --light-mint: #b6e5d2;
+      --background-color: #F8F0EA;
+    }
+
+    /* --- Layout --- */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: radial-gradient(circle at center, var(--light-mint), var(--medium-sage));
+      font-family: 'Poppins', sans-serif;
+      color: var(--background-color);
+      overflow: hidden;
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+
+    /* --- Logo / Title --- */
+    .logo {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      letter-spacing: 1px;
+      color: var(--light-mint);
+      animation: fadeIn 2s ease-in-out infinite alternate;
+    }
+
+    /* --- Spinner --- */
+    .spinner {
+      border: 8px solid rgba(255, 255, 255, 0.2);
+      border-top: 8px solid var(--pale-mint);
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 1s linear infinite;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+
+    /* --- Text Below Spinner --- */
+    p {
+      margin-top: 2rem;
+      font-size: 1.1rem;
+      color: var(--light-mint);
+      text-align: center;
+      width: 80%;
+      line-height: 1.5;
+    }
+
+    /* --- Animations --- */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0.6; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">🍯 Sunnah Meal Planner</div>
+  <div class="spinner"></div>
+  <p>“The best of you are those who eat together and remember Allah.”</p>
+</body>
+</html>
